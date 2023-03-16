@@ -1,0 +1,29 @@
+@startuml
+actor User
+participant "Online Ticket Booking Platform" as system
+database MovieDB
+database ReservationDB
+User -> system: Search for movie by title
+system -> MovieDB: Query movie by title
+MovieDB -> system: Return matching movies
+system -> User: Display matching movies
+User -> system: Select a movie
+system -> MovieDB: Query movie details
+MovieDB -> system: Return movie details and showtimes
+system -> User: Display movie details and showtimes
+User -> system: Select a showtime
+system -> MovieDB: Query available seats
+MovieDB -> system: Return available seats
+system -> User: Display seat selection interface
+User -> system: Choose seats
+system -> MovieDB: Confirm seat availability
+MovieDB -> system: Update seat availability
+system -> ReservationDB: Create reservation
+ReservationDB -> system: Return reservation confirmation
+system -> User: Display reservation confirmation
+User -> system: Proceed to checkout
+system -> User: Display payment options
+User -> system: Choose payment method
+system -> system: Process payment
+system -> User: Display payment confirmation
+@enduml
